@@ -1,7 +1,7 @@
-const express = require('express');
-const uuid = require('uui');
+const express = require('express')
+// const uuid = require('uui');
 const api = require("./routes/notes.js");
-
+const uuid = require('uuid')
 const app = express("express");
 
 const PORT = process.env.port || 3001;
@@ -16,7 +16,7 @@ app.use(".routes/notes.html", api);
 app.use(express.static("public"));
 
 // GET Route for homepage
-app.get('/', (req, res) =>
+app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
@@ -26,5 +26,5 @@ app.get('/notes', (req, res) =>
 );
 
 app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
+  console.log(`App listening at http://localhost:${PORT}`)
 );
