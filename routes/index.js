@@ -2,7 +2,6 @@ const homepage = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
 
 homepage.post("/", (req, res) => {
-    console.log(req.body);
     const { isValid, errors } = req.body;
 
     const newTask = {
@@ -12,7 +11,7 @@ homepage.post("/", (req, res) => {
     }
 
     if(!isValid) {
-        // readAndAppend(newTask, './Develop/db/db.json');
+        readAndAppend(newTask, './Develop/db/db.json');
         res.json('New Task Added');
     } else {
         res.json({

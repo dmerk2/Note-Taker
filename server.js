@@ -1,29 +1,19 @@
-const express = require('express')
-// const uuid = require('uui');
+const express = require("express");
 const api = require("./routes/notes.js");
-const uuid = require('uuid')
+const uuid = require("uuid");
 const app = express("express");
+const fs = require('fs');
 
 const PORT = process.env.port || 3001;
 
-// app.use('/routes/notes.js')
-
-// // Middleware for parsing JSON and urlencoded form data
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(".routes/notes.html", api);
-
-// app.use(express.static("public"));
-
 // GET Route for homepage
-app.get('/', (req, res) =>
-console.log(req.body));
-  console.log(req.body);
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname, "/public/index.html"))
+);
 
 // GET Route for notes page
-app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
+app.get("/notes", (req, res) =>
+  res.sendFile(path.join(__dirname, "/public/pages/notes.html"))
 );
 
 app.listen(PORT, () =>
