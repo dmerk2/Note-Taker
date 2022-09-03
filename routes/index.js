@@ -1,12 +1,25 @@
-const express = require('express').Router();
+const homepage = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
-// Importing modular routers 
-const notesRouter = require("./notes")
-const homepageRouter = require("./index")
 
-const app = express()
+homepage.post("/", (req, res) => {
+    console.log(req.body);
+    const { isValid, errors } = req.body;
 
-app.use('./notes', notesRouter);
-app.use('./index', homepageRouter);
+    const newTask = {
+        time: Date.now(),
+        error_id: uuidv4(),
+        errors,
+    }
 
-module.exports = app;
+    if(!isValid) {
+        // readAndAppend(newTask, './Develop/db/db.json');
+        res.json('New Task Added');
+    } else {
+        res.json({
+            message: 'Object is valid but not logging.',
+            error_id: newTask.error_id,
+        })
+    }
+});
+
+module.exports = homepage;
