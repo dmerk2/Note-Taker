@@ -1,22 +1,24 @@
 const express = require("express");
 const api = require("./routes/notes.js");
-const uuid = require("uuid");
-const app = express("express");
-const database = require('./Develop/db/db.json')
-let path = require("path")
+const database = require("./Develop/db/db.json");
+const path = require("path");
+
+const app = express();
+
 const PORT = process.env.port || 3001;
 
 // Middleware for parsing JSON and urlencoded form data
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use('/api', api);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/api', api);
 
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 // GET Route for homepage
-app.get("/", (req, res) =>{
-let newNote = req.body;
-  res.sendFile(path.join(__dirname, "/public/index.html"))
+app.get("/", (req, res) => {
+  let newNote = req.body;
+  
+  res.sendFile(path.join(__dirname, "/public/index.html"));
   database.push(newNote);
 });
 
