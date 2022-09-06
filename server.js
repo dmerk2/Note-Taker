@@ -15,7 +15,7 @@ app.use('/api', api);
 app.use(express.static('public'));
 
 // GET Route for homepage
-app.get("/", (req, res) => {
+app.get("/homepage", (req, res) => {
   let newNote = req.body;
   
   res.sendFile(path.join(__dirname, "/public/index.html"));
@@ -24,9 +24,16 @@ app.get("/", (req, res) => {
 
 // GET Route for notes page
 app.get("/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "/public/pages/notes.html"))
+res.send(req.params)
+  // res.sendFile(path.join(__dirname, "/public/pages/notes.html"))
 );
 
+// For any invalid routes
+app.get('*', (req, res) => {
+  res.send('404 Error! This is an invalid URL')
+})
+
+// Server on PORT starts to listen for reqests
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
