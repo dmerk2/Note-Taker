@@ -10,9 +10,9 @@ const PORT = process.env.port || 3001;
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
+app.use("/api", api);
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // GET Route for homepage
 app.get("/", (req, res) => {
@@ -24,14 +24,16 @@ app.get("/", (req, res) => {
 
 // GET Route for notes page
 app.get("/notes", (req, res) =>
-// res.send(req.params)
+  // res.send(req.params)
   res.sendFile(path.join(__dirname, "/Develop/public/notes.html"))
 );
 
 // For any invalid routes
-app.get('*', (req, res) => {
-  res.send('404 Error! This is an invalid URL')
-})
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/Develop/public/notes.html"));
+
+  res.send("404 Error! This is an invalid URL");
+});
 
 // Server on PORT starts to listen for reqests
 app.listen(PORT, () =>
