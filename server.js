@@ -18,8 +18,8 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   let newNote = req.body;
 
-  res.sendFile(path.join(__dirname, "/Develop/public/index.html"));
   database.push(newNote);
+  res.sendFile(path.join(__dirname, "/Develop/public/index.html"));
 });
 
 // GET Route for notes page
