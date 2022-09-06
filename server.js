@@ -15,17 +15,17 @@ app.use('/api', api);
 app.use(express.static('public'));
 
 // GET Route for homepage
-app.get("/homepage", (req, res) => {
+app.get("/", (req, res) => {
   let newNote = req.body;
-  
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+
+  res.sendFile(path.join(__dirname, "/Develop/public/index.html"));
   database.push(newNote);
 });
 
 // GET Route for notes page
 app.get("/notes", (req, res) =>
-res.send(req.params)
-  // res.sendFile(path.join(__dirname, "/public/pages/notes.html"))
+// res.send(req.params)
+  res.sendFile(path.join(__dirname, "/Develop/public/notes.html"))
 );
 
 // For any invalid routes

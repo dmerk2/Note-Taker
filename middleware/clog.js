@@ -4,15 +4,17 @@ const app = require("../routes");
 const clog = (req, res, next) => {
   switch (req.method) {
     case "GET": {
-      console.info(`${req.method} request to ${req.path}`);
+      app.get(`${req.method} request to ${req.path}`);
+      res.json(`${req.method} request to ${req.path}`);
       break;
     }
     case "POST": {
-      console.info(`${req.method} request to ${req.path}`);
+      app.post(`${req.method} request to ${req.path}`);
+      // res.json(`${req.method} request to ${req.path}`);
       break;
     }
     default:
-      console.log(`${req.method} request to ${req.path}`);
+      app.send(`${req.method} request to ${req.path}`);
   }
 
   next();
