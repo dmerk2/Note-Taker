@@ -5,12 +5,10 @@ const clog = (req, res, next) => {
   switch (req.method) {
     case "GET": {
       app.get(`${req.method} request to ${req.path}`);
-      res.json(`${req.method} request to ${req.path}`);
       break;
     }
     case "POST": {
       app.post(`${req.method} request to ${req.path}`);
-      // res.json(`${req.method} request to ${req.path}`);
       break;
     }
     default:
