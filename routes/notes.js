@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 homepage.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/db/db.json'));
+  res.sendFile(path.join(__dirname, '../Develop/db/db.json'));
 });
 
 // Route is actually -> POST METHOD to /api/
@@ -23,7 +23,7 @@ homepage.post("/", (req, res) => {
   // take the new Task and update our database -> db.json file (DATA PERSISTANCE!!)
 
   // 1) grab the existing Data --> fs we read in the db.json data ->
-  let db = fs.readFileSync("/db/db.json");
+  let db = fs.readFileSync("./Develop/db/db.json");
 
   // *) ->  convert that data into a JS object (parse stringify methods)
 
@@ -33,7 +33,7 @@ homepage.post("/", (req, res) => {
   db.push(newTask);
 
   // 3) Now we have new data to SAVE --> write new data file to perminant storage
-  fs.writeFileSync("/db/db.json", JSON.stringify(db));
+  fs.writeFileSync("./Develop/db/db.json", JSON.stringify(db));
   res.json(db);
 
   res.json(newTask);
