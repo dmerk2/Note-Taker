@@ -9,7 +9,7 @@
 - [Installation](#installation)
 - [Live-Application-Link](#live-application-link)
 - [Mock-up](#mock-up)
-- [Contributing](#installation)
+- [Contributing](#contributing)
 - [Questions](#questions)
 
 ## User Story
@@ -59,6 +59,7 @@ Homepage
 Notes Page
 
 ![Notes](./Assets/11-express-homework-demo-02.png)
+
 ## Contributing
 
 ```md
