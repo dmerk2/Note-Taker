@@ -17,7 +17,8 @@ app.use(express.static("Develop/public"));
 // GET Route for homepage
 app.get("/", (req, res) => {
   let newNote = req.body;
-
+  
+  // Add the new note to the database
   database.push(newNote);
   res.sendFile(path.join(__dirname, "/Develop/public/index.html"));
 });
