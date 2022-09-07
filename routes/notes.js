@@ -28,7 +28,7 @@ homepage.post("/", (req, res) => {
   // *) ->  convert that data into a JS object (parse stringify methods)
 
   db = JSON.parse(db);
-  // res.json(db);
+
   // 2) We need to ADD the NEW TASK (data.push(newTask))
   db.push(newTask);
 

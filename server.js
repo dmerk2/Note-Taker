@@ -28,10 +28,10 @@ app.get("/notes", (req, res) =>
 );
 
 // For any invalid routes
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "/Develop/public/notes.html"));
-//   res.send("404 Error! This is an invalid URL");
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/Develop/public/notes.html"));
+  res.send("404 Error! This is an invalid URL");
+});
 
 // Server on PORT starts to listen for reqests
 app.listen(PORT, () =>
