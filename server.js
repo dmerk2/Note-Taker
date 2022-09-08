@@ -35,18 +35,39 @@ app.get("*", (req, res) => {
 });
 
 // Delete notes
-app.delete("/notes/:id", (req, res) => {
-  let deleteNote = path.join(__dirname, "/db/db.json");
+// app.delete("/notes/:id", (req, res) => {
+//   let deleteNote = path.join(__dirname, databse);
 
-  for (let i = 0; i < database.length; i++) {
-    if (database[i].id == req.params.id) {
-      database.splice(i, 1);
+//   for (let i = 0; i < database.length; i++) {
+//     if (database[i].id === req.params.id) {
+//       database.splice(i, 1);
+//       break;
+//     }
+//   }
+//   fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(database));
+
+//   res.json(database);
+// });
+
+function deleteNote(id, notesArray) {
+  for (let i = 0; i < notesArray.length; i++) {
+    let note = notesArray[i];
+
+    if (note.id == id) {
+      notesArray.splice(i, 1);
+      fs.writeFileSync(
+        path.join(__dirname, "./db/db.json"),
+        JSON.stringify(notesArray, null, 2)
+      );
+
       break;
     }
   }
-  fs.writeFileSync(deleteNote, JSON.stringify(database));
+}
 
-  res.json(database);
+app.delete("/api/notes/:id", (req, res) => {
+  deleteNote(req.params.id, database);
+  res.json(true);
 });
 
 // Server on PORT starts to listen for reqests
