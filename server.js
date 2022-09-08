@@ -35,19 +35,6 @@ app.get("*", (req, res) => {
 });
 
 // Delete notes
-// app.delete("/notes/:id", (req, res) => {
-//   let deleteNote = path.join(__dirname, databse);
-
-//   for (let i = 0; i < database.length; i++) {
-//     if (database[i].id === req.params.id) {
-//       database.splice(i, 1);
-//       break;
-//     }
-//   }
-//   fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(database));
-
-//   res.json(database);
-// });
 
 function deleteNote(id, notesArray) {
   for (let i = 0; i < notesArray.length; i++) {
@@ -56,7 +43,7 @@ function deleteNote(id, notesArray) {
     if (note.id == id) {
       notesArray.splice(i, 1);
       fs.writeFileSync(
-        path.join(__dirname, "./db/db.json"),
+        path.join(__dirname, "./Develop/db/db.json"),
         JSON.stringify(notesArray, null, 2)
       );
 
