@@ -2,7 +2,7 @@ const express = require("express");
 const api = require("./routes/notes.js");
 const database = require("./Develop/db/db.json");
 const path = require("path");
-
+const fs = require("fs");
 const app = express();
 
 const PORT = process.env.PORT || 3001;
@@ -17,7 +17,7 @@ app.use(express.static("Develop/public"));
 // GET Route for homepage
 app.get("/", (req, res) => {
   let newNote = req.body;
-  
+
   // Add the new note to the database
   database.push(newNote);
   res.sendFile(path.join(__dirname, "/Develop/public/index.html"));
@@ -32,6 +32,21 @@ app.get("/notes", (req, res) =>
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/Develop/public/notes.html"));
   res.send("404 Error! This is an invalid URL");
+});
+
+// Delete notes
+app.delete("/notes/:id", (req, res) => {
+  let deleteNote = path.join(__dirname, "/db/db.json");
+
+  for (let i = 0; i < database.length; i++) {
+    if (database[i].id == req.params.id) {
+      database.splice(i, 1);
+      break;
+    }
+  }
+  fs.writeFileSync(deleteNote, JSON.stringify(database));
+
+  res.json(database);
 });
 
 // Server on PORT starts to listen for reqests
